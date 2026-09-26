@@ -72,7 +72,7 @@ bookingForm.addEventListener("submit", async function(event) {
     try {
 
         const response = await fetch(
-            "http://127.0.0.1:5000/api/booking",
+            "https://drivefix-api-pwn5.onrender.com/api/booking",
             {
                 method: "POST",
 
