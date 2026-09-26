@@ -69,6 +69,11 @@ bookingForm.addEventListener("submit", async function(event) {
     submitButton.disabled = true;
     submitButton.textContent = "Отправляем...";
 
+    showMessage(
+        "Отправляем заявку. Это может занять несколько секунд...",
+        ""
+    );
+
     try {
 
         const response = await fetch(
@@ -100,15 +105,12 @@ bookingForm.addEventListener("submit", async function(event) {
         bookingForm.reset();
 
     } catch (error) {
-
         console.error("Ошибка:", error);
 
         showMessage(
-            error.message ||
-            "Не удалось отправить заявку. Попробуйте ещё раз.",
+            "Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь с нами по телефону.",
             "error"
         );
-
     } finally {
 
         submitButton.disabled = false;

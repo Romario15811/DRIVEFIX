@@ -11,7 +11,26 @@
 
     <title>DRIVEFIX — Автосервис</title>
 
-    <link rel="stylesheet" href="style.css">
+    <meta
+        name="description"
+        content="DRIVEFIX — диагностика, техническое обслуживание и ремонт автомобилей."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b0f14"
+    >
+
+    <link
+        rel="icon"
+        href="images/favicon.svg"
+        type="image/svg+xml"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 </head>
 
 <body>
@@ -261,20 +280,26 @@
                         type="text"
                         id="client-name"
                         placeholder="Ваше имя"
+                        maxlength="50"
+                        autocomplete="name"
                         required
                     >
 
                     <input
                         type="tel"
                         id="client-phone"
-                        placeholder="Телефон"
+                        placeholder="+380..."
+                        maxlength="25"
+                        autocomplete="tel"
                         required
                     >
 
                     <input
                         type="text"
                         id="client-car"
-                        placeholder="Автомобиль"
+                        placeholder="Марка и модель"
+                        maxlength="100"
+                        autocomplete="off"
                     >
 
                     <select id="client-service">

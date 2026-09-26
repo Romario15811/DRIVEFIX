@@ -18,15 +18,22 @@ app = Flask(__name__)
 # Разрешаем запросы только от нашего локального frontend.
 # После публикации сюда добавим настоящий адрес сайта.
 
+FRONTEND_ORIGIN = os.getenv(
+    "FRONTEND_ORIGIN",
+    "https://romario15811.github.io"
+)
+
+ALLOWED_ORIGINS = [
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+    FRONTEND_ORIGIN
+]
+
 CORS(
     app,
     resources={
         r"/api/*": {
-            "origins": [
-                "http://127.0.0.1:5500",
-                "http://localhost:5500",
-                "https://romario15811.github.io"
-            ]
+            "origins": ALLOWED_ORIGINS
         }
     }
 )
@@ -104,6 +111,13 @@ def check_rate_limit(ip_address):
 # -----------------------------------
 # API
 # -----------------------------------
+
+@app.route("/api/health", methods=["GET"])
+def health_check():
+    return jsonify({
+        "status": "ok",
+        "service": "DRIVEFIX API"
+    }), 200
 
 @app.route("/api/booking", methods=["POST"])
 def create_booking():
