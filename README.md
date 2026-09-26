@@ -1,8 +1,20 @@
 # 🚗 DRIVEFIX
 
-Responsive website for an auto service with online booking and Telegram integration.
+Responsive full-stack website for an auto service with online booking and Telegram integration.
 
-DRIVEFIX allows customers to submit a service request through the website. The request is validated by the frontend and backend and then delivered to the auto service owner through a Telegram bot.
+Customers can submit a service request directly through the website. The request is validated by the frontend and backend, processed by a Flask API and delivered to the auto service owner through Telegram.
+
+## 🌐 Live Demo
+
+**Website:**  
+https://romario15811.github.io/DRIVEFIX/
+
+**API Health Check:**  
+https://drivefix-api-pwn5.onrender.com/api/health
+
+## 📸 Preview
+
+![DRIVEFIX Preview](images/drivefix-preview.png)
 
 ## ✨ Features
 
@@ -14,8 +26,10 @@ DRIVEFIX allows customers to submit a service request through the website. The r
 - Telegram booking notifications
 - Basic rate limiting
 - CORS configuration
-- Secure environment variables
+- Environment variables for sensitive data
+- API health check
 - Responsive hero section
+- Production deployment
 
 ## 🛠 Technologies
 
@@ -25,33 +39,40 @@ DRIVEFIX allows customers to submit a service request through the website. The r
 - CSS3
 - JavaScript
 - Fetch API
+- GitHub Pages
 
 ### Backend
 
 - Python
 - Flask
 - Flask-CORS
+- Gunicorn
 - Requests
 - python-dotenv
+- Render
 
 ### Integration
 
 - Telegram Bot API
 
-## 🔄 How it works
+## 🔄 Architecture
 
 ```text
 Customer
    ↓
-DRIVEFIX website
+GitHub Pages
+   ↓
+DRIVEFIX Frontend
    ↓
 JavaScript validation
    ↓
-POST /api/booking
+HTTPS POST /api/booking
    ↓
-Flask backend
+Render
    ↓
-Server validation
+Flask + Gunicorn
+   ↓
+Backend validation
    ↓
 Telegram Bot API
    ↓
@@ -64,7 +85,9 @@ Sensitive data such as the Telegram bot token and chat ID are stored in environm
 
 The backend performs its own validation instead of relying only on client-side JavaScript.
 
-## 🚀 Local development
+CORS is configured to allow requests from the production frontend and local development environment.
+
+## 🚀 Local Development
 
 Install Python dependencies:
 
@@ -77,6 +100,7 @@ Create a `.env` file:
 ```env
 TELEGRAM_BOT_TOKEN=your_bot_token
 TELEGRAM_CHAT_ID=your_chat_id
+FRONTEND_ORIGIN=https://your-frontend-domain.com
 ```
 
 Run the backend:
@@ -87,10 +111,46 @@ python server.py
 
 Run the frontend using Live Server or another local development server.
 
+## 📡 API
+
+### Health Check
+
+```http
+GET /api/health
+```
+
+Example response:
+
+```json
+{
+    "service": "DRIVEFIX API",
+    "status": "ok"
+}
+```
+
+### Create Booking
+
+```http
+POST /api/booking
+```
+
+Example request:
+
+```json
+{
+    "name": "Roman",
+    "phone": "+380991234567",
+    "car": "Ford Focus",
+    "service": "Diagnostics"
+}
+```
+
 ## 📌 Status
 
-DRIVEFIX is currently being prepared for deployment.
+✅ Deployed and working.
+
+The frontend is hosted on GitHub Pages and the Flask API is deployed on Render.
 
 ## 👨‍💻 Author
 
-Created as a full-stack web development project.
+Created as a full-stack web development portfolio project.
