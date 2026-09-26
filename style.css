@@ -535,15 +535,30 @@ p {
     }
 
     .hero {
-        min-height: 600px;
+        min-height: 560px;
+        background-position: 62% center;
+    }
+
+    .hero-content {
+        width: 100%;
+        max-width: 100%;
     }
 
     .hero h1 {
-        font-size: 42px;
+        font-size: 34px;
+        line-height: 1.1;
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+
+    .hero-label {
+        font-size: 12px;
+        letter-spacing: 2px;
     }
 
     .hero-text {
-        font-size: 18px;
+        max-width: 100%;
+        font-size: 17px;
     }
 
     .services-grid,
@@ -562,5 +577,9 @@ p {
 
     .header-button {
     display: none;
+    }
+
+    .container {
+        width: calc(100% - 40px);
     }
 }
