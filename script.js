@@ -12,6 +12,7 @@ const submitButton = bookingForm.querySelector('button[type="submit"]');
 bookingForm.addEventListener("submit", async function(event) {
     event.preventDefault();
 
+    if (submitButton.disabled) return;
     clearMessage();
 
     const clientData = {
@@ -166,4 +167,22 @@ navLinks.forEach(function(link) {
 
     });
 
+});
+// Keep the mobile menu's accessible state in sync in every language.
+function syncPublicMenu() {
+    const open = nav.classList.contains('active');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-controls', 'nav');
+    menuButton.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+}
+menuButton.addEventListener('click', syncPublicMenu);
+navLinks.forEach(link => link.addEventListener('click', syncPublicMenu));
+syncPublicMenu();
+
+// Escape closes the mobile menu and returns focus to its trigger.
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && nav.classList.contains('active')) {
+        nav.classList.remove('active'); menuButton.classList.remove('active');
+        syncPublicMenu(); PublicI18n.apply(); menuButton.focus();
+    }
 });

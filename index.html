@@ -279,6 +279,7 @@
                     <input
                         type="text"
                         id="client-name"
+                        aria-label="Имя"
                         placeholder="Ваше имя"
                         maxlength="50"
                         autocomplete="name"
@@ -288,6 +289,7 @@
                     <input
                         type="tel"
                         id="client-phone"
+                        aria-label="Телефон"
                         placeholder="+380..."
                         maxlength="25"
                         autocomplete="tel"
@@ -297,12 +299,13 @@
                     <input
                         type="text"
                         id="client-car"
+                        aria-label="Марка и модель"
                         placeholder="Марка и модель"
                         maxlength="100"
                         autocomplete="off"
                     >
 
-                    <select id="client-service">
+                    <select id="client-service" aria-label="Услуга" required>
                         <option value="">Выберите услугу</option>
                         <option value="Диагностика">Диагностика</option>
                         <option value="Замена масла">Замена масла</option>
@@ -316,7 +319,7 @@
                         Отправить заявку
                     </button>
 
-                    <p id="form-message"></p>
+                    <p id="form-message" role="status" aria-live="polite" aria-atomic="true"></p>
 
                 </form>
 
@@ -348,6 +351,7 @@
     </footer>
 
 
+    <script src="i18n.js"></script>
     <script src="script.js?v=2"></script>
 
 </body>
