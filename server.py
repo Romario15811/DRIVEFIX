@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 FRONTEND_ORIGIN = os.getenv(
     "FRONTEND_ORIGIN",
-    "https://romario15811.github.io"
+    "https://roman-webdev.github.io"
 )
 
 ALLOWED_ORIGINS = [
