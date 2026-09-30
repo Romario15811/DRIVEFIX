@@ -77,7 +77,7 @@ bookingForm.addEventListener("submit", async function(event) {
     try {
 
         const response = await fetch(
-            "https://drivefix-api-pwn5.onrender.com/api/booking",
+            "https://drivefix-wcz1.onrender.com/api/booking",
             {
                 method: "POST",
 
