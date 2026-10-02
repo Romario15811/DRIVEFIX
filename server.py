@@ -301,11 +301,22 @@ def create_booking():
         )
 
 
-        if not telegram_response.ok:
+        try:
+            telegram_result = telegram_response.json()
+        except ValueError:
+            telegram_result = {}
 
-            print(
-                "Telegram error:",
-                telegram_response.text
+        if (not telegram_response.ok
+                or not isinstance(telegram_result, dict)
+                or telegram_result.get("ok") is not True):
+
+            # Never log the response body or token-bearing request URL.
+            error_code = (telegram_result.get("error_code")
+                          if isinstance(telegram_result, dict) else None)
+            app.logger.warning(
+                "Telegram delivery rejected: HTTP %s, error_code %s",
+                telegram_response.status_code,
+                error_code if isinstance(error_code, int) else "unknown"
             )
 
             return jsonify({
@@ -316,12 +327,10 @@ def create_booking():
             }), 502
 
 
-    except requests.RequestException as error:
+    except requests.RequestException:
 
-        print(
-            "Ошибка соединения с Telegram:",
-            error
-        )
+        # RequestException may include a URL containing the bot token.
+        app.logger.warning("Telegram connection failed")
 
         return jsonify({
             "success": False,
